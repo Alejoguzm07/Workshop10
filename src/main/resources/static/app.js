@@ -35,12 +35,12 @@ var app = (function () {
         var socket = new SockJS('/stompendpoint');
         stompClient = Stomp.over(socket);
         
-        //subscribe to /topic/TOPICXX when connections succeed
+        //subscribe to /topic/newpoint when connections succeed
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
                 var theObject=JSON.parse(eventbody.body);
-                alert(theObject);
+                alert("(" + theObject.x + " , " + theObject.y + ")");
             });
         });
 
