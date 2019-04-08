@@ -45,6 +45,12 @@ var app = (function () {
         });
 
     };
+
+    var click = function(event){
+        var pos = getMousePosition(event);
+        var pt = new Point(pos.x,pos.y);
+        addPointToCanvas(pt);
+    };
     
     
 
@@ -52,11 +58,10 @@ var app = (function () {
 
         init: function () {
             var can = document.getElementById("canvas");
-            
+            can.addEventListener("mousedown",click,false);
             //websocket connection
             connectAndSubscribe();
         },
-
         publishPoint: function(px,py){
             var pt=new Point(px,py);
             console.info("publishing point at "+pt);
