@@ -40,7 +40,11 @@ var app = (function () {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint', function (eventbody) {
                 var theObject=JSON.parse(eventbody.body);
-                alert("(" + theObject.x + " , " + theObject.y + ")");
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(theObject.x, theObject.y, 3, 0, 2 * Math.PI);
+                ctx.stroke();
             });
         });
 
