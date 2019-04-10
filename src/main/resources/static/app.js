@@ -62,8 +62,10 @@ var app = (function () {
 
         init: function () {
             var can = document.getElementById("canvas");
+            var ctx = can.getContext("2d");
+            ctx.clearRect(0, 0, can.width, can.height);
             can.addEventListener("mousedown",click,false);
-            
+
             //websocket connection
             drowingNumber = $("#numberOfDrawing").val();
             connectAndSubscribe();
