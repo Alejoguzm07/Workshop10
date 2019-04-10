@@ -10,7 +10,7 @@ var app = (function () {
     var stompClient = null;
 
     var addPointToCanvas = function (point) {
-        stompClient.send("/topic/newpoint."+drowingNumber, {}, JSON.stringify(point));
+        stompClient.send("/app/newpoint."+drowingNumber, {}, JSON.stringify(point));
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
         ctx.beginPath();
