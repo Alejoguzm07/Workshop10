@@ -18,7 +18,21 @@ var app = (function () {
         ctx.stroke();
 
     };
-    
+
+    var addPolygonToCanvas = function (points) {
+        var vcs = points.vertices;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#f8cfc0";
+        ctx.beginPath();
+        ctx.moveTo(vcs[0].x, vcs[0].y);
+        for (var i = 1; i < vcs.length; i++) {
+            ctx.lineTo(vcs[i].x, vcs[i].y);
+        }
+        ctx.moveTo(vcs[0].x, vcs[0].y);
+        ctx.closePath();
+        ctx.fill();
+    };
+
     
     var getMousePosition = function (evt) {
         canvas = document.getElementById("canvas");
@@ -45,6 +59,10 @@ var app = (function () {
                 ctx.beginPath();
                 ctx.arc(theObject.x, theObject.y, 3, 0, 2 * Math.PI);
                 ctx.stroke();
+            });
+            stompClient.subscribe('/topic/newpolygon.'+drowingNumber, function (eventbody) {
+                var theObject = JSON.parse(eventbody.body);
+                addPolygonToCanvas(theObject);
             });
         });
 
