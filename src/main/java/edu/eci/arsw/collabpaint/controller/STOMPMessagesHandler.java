@@ -26,8 +26,8 @@ public class STOMPMessagesHandler {
         if(poligonos.containsKey(numdibujo)){
             Polygon p = poligonos.get(numdibujo);
             p.addPoint(pt);
-            System.out.println("El poligono "+numdibujo+" tiene "+p.numberOfPoints()+"vertices");
-            if(p.numberOfPoints() >= 2){
+            System.out.println("El poligono "+numdibujo+" tiene "+p.numberOfPoints()+" vertices");
+            if(p.numberOfPoints() >= 3){
                 msgt.convertAndSend("/topic/newpolygon."+numdibujo, p);
             }
         }else{
