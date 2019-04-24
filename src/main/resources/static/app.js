@@ -50,7 +50,7 @@ var app = (function () {
         stompClient = Stomp.over(socket);
         
         //subscribe to /topic/newpoint when connections succeed
-        stompClient.connect({}, function (frame) {
+        stompClient.connect("acsvovma", "EdkVoWP61rzzd65oMsIrlqcpk0OJlavZ", function (frame) {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newpoint.'+drowingNumber, function (eventbody) {
                 var theObject=JSON.parse(eventbody.body);
